@@ -30,7 +30,15 @@
 .sp-back a i { font-style: normal; color: var(--yellow); }
 .sp-back a:hover { color: var(--text); gap: 14px; }
 
-.sanko-page .book { padding-top: 2vh; }
+.sanko-page .book { padding-top: 2vh; scroll-margin-top: calc(var(--bar, 72px) + 8px); }
+
+/* The ad sits on top of the page; the QR code on the cards lands here. */
+.sp-ad {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 2vh clamp(8px, 2.2vw, 36px) 7vh;
+}
+.sp-ad .ad { --fit: 170px; }
 
 /* -------------------------------------------- Šanko, the whole story (book) */
 

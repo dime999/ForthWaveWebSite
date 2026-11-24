@@ -5,6 +5,14 @@
 
 const TEXT = {
   en: {
+    "ad.play": "Watch the ad",
+    "ad.sound": "Turn the sound on",
+    "ad.end.title": "That's Šanko.",
+    "ad.end.text": "A digital bar book for cafés and bars. See exactly how it works, step by step.",
+    "ad.more": "Everything about Šanko",
+    "ad.details": "See how it works",
+    "ad.replay": "Watch again",
+    "ad.skip": "Skip to the details",
     "nav.services": "Services",
     "nav.work": "Work",
     "nav.team": "Team",
@@ -160,6 +168,14 @@ const TEXT = {
     "book.e.sign": "Owner's signature",
   },
   bs: {
+    "ad.play": "Pogledaj reklamu",
+    "ad.sound": "Uključi zvuk",
+    "ad.end.title": "To je Šanko.",
+    "ad.end.text": "Digitalna šankerska knjiga za kafiće i barove. Pogledajte tačno kako radi, korak po korak.",
+    "ad.more": "Sve o Šanku",
+    "ad.details": "Pogledaj kako radi",
+    "ad.replay": "Pogledaj ponovo",
+    "ad.skip": "Preskoči na detalje",
     "nav.services": "Usluge",
     "nav.work": "Radovi",
     "nav.team": "Tim",

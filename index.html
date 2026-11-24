@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Martian+Mono:wght@400;500&family=Roboto+Slab:wght@700..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
   <!--
@@ -234,9 +234,43 @@
       </div>
     </section>
 
-    <!-- 06 · Šanko: our own product. A laptop opens, a phone rises, and the
+    <!-- 06 · Šanko: the ad first, then the scene below shows how it works. -->
+    <section class="ad-sec" id="sanko" data-sea="0.3">
+      <header class="sec-head rv">
+        <p class="ad-kicker mono"><img src="assets/sanko/icon.webp" alt="" width="192" height="192"><span data-i18n="ad.kicker">Šanko · the ad</span></p>
+        <h2 class="h2" data-i18n="ad.title"></h2>
+      </header>
+      <div class="ad" id="sanko-ad" data-ad data-src="assets/sanko/ad/sanko-ad-1080.mp4" data-src-sm="assets/sanko/ad/sanko-ad-720.mp4">
+        <div class="ad-frame">
+          <video playsinline preload="metadata" poster="assets/sanko/ad/poster.webp?v=2" aria-label="Šanko"></video>
+          <div class="ad-cover">
+            <button class="btn ad-start" type="button"><span data-i18n="ad.play">Watch the ad</span><i aria-hidden="true">▶</i></button>
+            <p class="ad-len mono">0:33</p>
+          </div>
+          <button class="ad-unmute" type="button"><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span data-i18n="ad.sound">Turn the sound on</span></button>
+          <div class="ad-ctrl">
+            <button class="ad-toggle" type="button"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
+            <input class="ad-seek" type="range" min="0" max="1000" value="0" step="1">
+            <span class="ad-time mono">0:00 / 0:33</span>
+            <button class="ad-sound" type="button"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.6 3 2.7-2.7-1.3-1.3-2.7 2.7-2.7-2.7-1.3 1.3 2.7 2.7-2.7 2.7 1.3 1.3 2.7-2.7 2.7 2.7 1.3-1.3z"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+            <button class="ad-full" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg></button>
+          </div>
+          <div class="ad-end">
+            <img src="assets/sanko/icon.webp" alt="" width="192" height="192">
+            <p class="ad-end-title" data-i18n="ad.end.title">That's Šanko.</p>
+            <p class="ad-end-text" data-i18n="ad.end.text"></p>
+            <div class="actions">
+              <a class="btn" href="sanko/"><span data-i18n="ad.more">Everything about Šanko</span><i aria-hidden="true">↗</i></a>
+              <button class="btn ghost ad-replay" type="button"><span data-i18n="ad.replay">Watch again</span><i aria-hidden="true">↻</i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06b · Šanko: our own product. A laptop opens, a phone rises, and the
          two screens walk through one shift together while you scroll. -->
-    <section class="scene product" id="sanko" data-scene="product" data-sea="0.3">
+    <section class="scene product" id="sanko-app" data-scene="product" data-sea="0.3">
       <div class="sticky">
 
         <div class="product-copy">
@@ -433,6 +467,7 @@
     <i class="jump-l d"><img src="assets/logo/logo.webp" alt=""></i>
   </div>
 
-  <script src="main.js?v=20"></script>
+  <script src="main.js?v=21"></script>
+  <script src="ad.js?v=1"></script>
 </body>
 </html>

@@ -1630,6 +1630,205 @@ main, .footer { position: relative; z-index: 1; }
 
 /* ------------------------------------------------------ Reduced motion */
 
+/* ------------------------------------------------------- Šanko ad player */
+
+/* The frame is a logo plate: square, with the blue print offset. It is
+   sized to fit the screen under the top bar, never wider than 16:9 allows. */
+.ad {
+  --fit: 200px;
+  position: relative;
+  width: min(100%, 1280px, calc((100vh - var(--fit)) * 16 / 9));
+  width: min(100%, 1280px, calc((100svh - var(--fit)) * 16 / 9));
+  margin: 0 auto;
+  scroll-margin-top: 96px;
+}
+
+.ad-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 10px 10px 0 var(--blue);
+}
+.ad-frame:fullscreen { box-shadow: none; }
+
+.ad video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.ad-cover {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  background: radial-gradient(closest-side, rgba(12, 28, 45, 0.15), rgba(12, 28, 45, 0.72));
+  transition: opacity 0.4s;
+}
+.ad.started .ad-cover { opacity: 0; pointer-events: none; }
+.ad-start { height: 62px; font-size: 19px; }
+.ad-len { color: #fff; font-size: 12px; letter-spacing: 0.12em; opacity: 0.8; }
+
+/* Muted autoplay (from the QR code): one clear button to hear it. */
+.ad-unmute {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px 11px 13px;
+  background: var(--yellow);
+  color: #0b1520;
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 16px;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 var(--blue);
+  animation: ad-nudge 2.4s var(--ease) infinite;
+}
+.ad-unmute svg { width: 22px; height: 22px; fill: currentColor; }
+.ad.started.muted:not(.ended) .ad-unmute { display: inline-flex; }
+
+@keyframes ad-nudge {
+  0%, 70%, 100% { transform: none; }
+  80% { transform: translate(-2px, -2px); }
+  90% { transform: translate(1px, 1px); }
+}
+
+.ad-ctrl {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 34px 12px 10px;
+  background: linear-gradient(transparent, rgba(5, 12, 20, 0.82));
+  color: #fff;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s var(--ease);
+}
+.ad.started:not(.ended) .ad-frame:hover .ad-ctrl,
+.ad.started:not(.playing):not(.ended) .ad-ctrl,
+.ad.started:not(.ended) .ad-ctrl:focus-within { opacity: 1; transform: none; }
+@media (hover: none) {
+  .ad.started:not(.ended) .ad-ctrl { opacity: 1; transform: none; }
+}
+
+.ad-ctrl button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  color: #fff;
+  transition: color 0.2s;
+}
+.ad-ctrl button:hover,
+.ad-ctrl button:focus-visible { color: var(--yellow); }
+.ad-ctrl svg { width: 22px; height: 22px; fill: currentColor; }
+
+.ad-toggle .i-pause,
+.ad.playing .ad-toggle .i-play,
+.ad-sound .i-on,
+.ad:not(.muted) .ad-sound .i-off { display: none; }
+.ad.playing .ad-toggle .i-pause,
+.ad:not(.muted) .ad-sound .i-on { display: block; }
+
+.ad-seek {
+  flex: 1;
+  min-width: 60px;
+  height: 4px;
+  margin: 0 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background:
+    linear-gradient(var(--yellow) 0 0) 0 0 / calc(var(--done, 0) * 100%) 100% no-repeat,
+    rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+}
+.ad-seek::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; background: var(--yellow); border: 0; }
+.ad-seek::-moz-range-thumb { width: 13px; height: 13px; background: var(--yellow); border: 0; border-radius: 0; }
+.ad-time { font-size: 11px; white-space: nowrap; opacity: 0.85; }
+
+/* When it ends: what Šanko is, and where to read more. */
+.ad-end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+  background: rgba(8, 18, 30, 0.88);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0s 0.5s;
+}
+.ad.ended .ad-end { opacity: 1; visibility: visible; transition: opacity 0.5s; }
+.ad-end img { width: 64px; height: 64px; border-radius: 16px; }
+.ad-end-title {
+  font-size: clamp(28px, 3.4vw, 54px);
+  font-stretch: 118%;
+  font-weight: 760;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.ad-end-text { max-width: 32em; color: var(--mute); font-size: clamp(15px, 1.15vw, 18px); line-height: 1.55; }
+.ad-end .actions { justify-content: center; margin-top: 10px; }
+
+.ad-skip {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 6px 0;
+  color: var(--mute);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.3s, gap 0.3s var(--ease);
+}
+.ad-skip i { font-style: normal; color: var(--yellow); }
+.ad-skip:hover { color: var(--text); gap: 14px; }
+.ad.started .ad-skip { display: inline-flex; }
+
+/* On the home page the ad opens the Šanko part. */
+.ad-sec { padding: 18vh var(--gutter) 8vh; }
+.ad-sec .sec-head { margin-bottom: 7vh; }
+.ad-kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; color: var(--mute); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.ad-kicker img { width: 30px; height: 30px; border-radius: 8px; }
+
+@media (max-width: 700px) {
+  .ad-frame { box-shadow: 6px 6px 0 var(--blue); }
+  .ad-start { height: 50px; font-size: 16px; }
+  .ad-len { display: none; }
+  .ad-unmute { top: 10px; right: 10px; padding: 8px 12px 8px 10px; font-size: 14px; }
+  .ad-unmute svg { width: 18px; height: 18px; }
+  .ad-ctrl { gap: 4px; padding: 24px 6px 4px; }
+  .ad-ctrl button { width: 32px; height: 32px; }
+  .ad-ctrl svg { width: 19px; height: 19px; }
+  .ad-time { display: none; }
+  .ad-end { gap: 8px; padding: 12px; }
+  .ad-end img, .ad-end-text { display: none; }
+  .ad-end-title { font-size: 24px; }
+  .ad-end .actions { margin-top: 4px; gap: 10px; }
+  .ad-end .btn { --off: 3px; height: 40px; gap: 10px; padding: 0 14px; font-size: 14px; }
+  .ad-end .btn i { height: 18px; padding-left: 10px; font-size: 14px; }
+}
+
 /* ---------------------------------------------------- Section jump wave */
 
 .jump {
@@ -1712,6 +1911,7 @@ main, .footer { position: relative; z-index: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ad-unmute { animation: none; }
   .btn:hover::before, .btn:focus-visible::before { animation: none; }
   .grain { animation: none; }
   .scene { height: auto !important; }

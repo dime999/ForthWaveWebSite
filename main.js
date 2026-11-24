@@ -22,6 +22,16 @@ const CONTACT_EMAIL = "";
 // Arrays are headline lines (each rises separately).
 const TEXT = {
   en: {
+    "ad.kicker": "Šanko · the ad",
+    "ad.title": ["Šanko in", "<em>33 seconds.</em>"],
+    "ad.play": "Watch the ad",
+    "ad.sound": "Turn the sound on",
+    "ad.end.title": "That's Šanko.",
+    "ad.end.text": "A digital bar book for cafés and bars. See exactly how it works, step by step.",
+    "ad.more": "Everything about Šanko",
+    "ad.details": "See how it works",
+    "ad.replay": "Watch again",
+    "ad.skip": "Skip to the details",
     "nav.services": "Services",
     "nav.work": "Work",
     "nav.team": "Team",
@@ -119,6 +129,16 @@ const TEXT = {
   },
 
   bs: {
+    "ad.kicker": "Šanko · reklama",
+    "ad.title": ["Šanko za", "<em>33 sekunde.</em>"],
+    "ad.play": "Pogledaj reklamu",
+    "ad.sound": "Uključi zvuk",
+    "ad.end.title": "To je Šanko.",
+    "ad.end.text": "Digitalna šankerska knjiga za kafiće i barove. Pogledajte tačno kako radi, korak po korak.",
+    "ad.more": "Sve o Šanku",
+    "ad.details": "Pogledaj kako radi",
+    "ad.replay": "Pogledaj ponovo",
+    "ad.skip": "Preskoči na detalje",
     "nav.services": "Usluge",
     "nav.work": "Radovi",
     "nav.team": "Tim",
@@ -324,9 +344,15 @@ const PROJECTS = {
   function anchorTop(el) {
     const top = el.getBoundingClientRect().top + window.scrollY;
     if (el.id === "top") return 0;
+    // The Šanko ad: the player in the middle of the screen.
+    const ad = el.querySelector(":scope > .ad");
+    if (ad) {
+      const r = ad.getBoundingClientRect();
+      return r.top + window.scrollY - Math.max(0, (window.innerHeight - r.height) / 2) + 20;
+    }
     if (el.matches("[data-scene]")) {
       const travel = el.offsetHeight - window.innerHeight;
-      const at = el.id === "sanko" ? 0.2 : 0.62;
+      const at = el.id === "sanko-app" ? 0.2 : 0.62;
       return top + travel * at;
     }
     return top - 40;
@@ -597,7 +623,7 @@ const PROJECTS = {
 
   /* ---- Šanko: the laptop opens, the phone rises, then four screens */
 
-  const prodEl = document.getElementById("sanko");
+  const prodEl = document.getElementById("sanko-app");
   const prod = prodEl && {
     steps: [...prodEl.querySelectorAll(".product-steps li")],
     dots: [...prodEl.querySelectorAll(".product-dots i")],
@@ -734,11 +760,11 @@ const PROJECTS = {
 
     const mid = vh * 0.5;
     let section = "";
-    for (const id of ["services", "web", "mobile", "video", "sanko", "team", "contact"]) {
+    for (const id of ["services", "web", "mobile", "video", "sanko", "sanko-app", "team", "contact"]) {
       const r = document.getElementById(id).getBoundingClientRect();
       if (r.top <= mid && r.bottom > mid) section = id;
     }
-    const nav = ["web", "mobile", "video"].includes(section) ? "web" : section;
+    const nav = ["web", "mobile", "video"].includes(section) ? "web" : section === "sanko-app" ? "sanko" : section;
     if (nav !== currentNav) {
       currentNav = nav;
       navLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === `#${nav}`));
