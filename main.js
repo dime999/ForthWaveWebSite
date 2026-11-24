@@ -54,15 +54,10 @@ const TEXT = {
     "svc.marketing.d": "Social media content and paid campaigns that bring real enquiries, not just likes.",
 
     "web.title": ["Fast sites", "you control", "<em>yourselves.</em>"],
-    "web.lede": "We plan the structure, design and write the code ourselves, no sluggish templates. When we're done, you get a system where your team can change text, images and offers in a few clicks, without calling us and waiting.",
 
     "mobile.title": ["Apps built", "<em>for real life.</em>"],
-    "mobile.lede": "Before we write the first line of code, we look at how the app will be used, usually on the move, in a hurry and with one hand. We draw the screens around that. Once everything falls into place, we build the app, test it and guide you through the whole store launch.",
-    "mobile.chip": "UI/UX design",
-    "mobile.nfc": "NFC integrations",
 
     "video.title": ["We edit reels,", "ads and", "<em>promo</em>", "<em>videos.</em>"],
-    "video.lede": "You send us the footage and tell us where it will be posted. We take care of the rest, we cut the excess, smooth out colour and sound, add pace and send back finished formats ready for Instagram, TikTok, YouTube or TV.",
     "video.play": "Watch with sound",
     "video.tag": "Our best work",
 
@@ -161,15 +156,10 @@ const TEXT = {
     "svc.marketing.d": "Sadržaj za društvene mreže i plaćene kampanje koje donose konkretne upite, a ne samo lajkove.",
 
     "web.title": ["Brze", "stranice koje", "sami", "<em>kontrolišete.</em>"],
-    "web.lede": "Sami planiramo strukturu, dizajniramo i pišemo kod, bez tromih šablona. Kad završimo, dobijate sistem u kojem vaš tim može sam mijenjati tekst, slike i ponude u par klikova, bez da nas zovete i čekate.",
 
     "mobile.title": ["Aplikacije", "pravljene", "<em>za stvarni</em>", "<em>život.</em>"],
-    "mobile.lede": "Prije nego napišemo prvu liniju koda, gledamo kako će se aplikacija koristiti, najčešće u hodu, na brzinu i jednom rukom. Po tome crtamo ekrane. Kada sve sjedne na svoje mjesto, aplikaciju razvijamo, testiramo i vodimo vas kroz cijeli proces objave na trgovinama.",
-    "mobile.chip": "UI/UX dizajn",
-    "mobile.nfc": "NFC integracije",
 
     "video.title": ["Montiramo", "reelse,", "reklame i", "<em>promo videe.</em>"],
-    "video.lede": "Vi nam pošaljete snimke i kažete gdje ih objavljujete. Mi preuzimamo ostalo, režemo višak, peglamo boju i zvuk, dodajemo dinamiku i vraćamo vam gotove formate spremne za Instagram, TikTok, YouTube ili TV.",
     "video.play": "Pogledaj sa zvukom",
     "video.tag": "Naši najbolji radovi",
 
