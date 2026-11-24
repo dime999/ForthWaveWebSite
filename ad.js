@@ -31,6 +31,15 @@
     const time = q(".ad-time");
     const after = box.dataset.after && document.querySelector(box.dataset.after);
 
+    // On phones the long "all about Šanko" label would cover the picture, so a
+    // copy of it sits under the player there (styles.css swaps the two).
+    const more = q(".ad-more");
+    if (more) {
+      const out = more.cloneNode(true);
+      out.className = "ad-more-out";
+      frame.after(out);
+    }
+
     const small = window.matchMedia("(max-width: 900px)").matches ||
       (navigator.connection && navigator.connection.saveData);
     v.src = small ? box.dataset.srcSm : box.dataset.src;
