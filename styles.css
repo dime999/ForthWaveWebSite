@@ -1547,25 +1547,37 @@ main, .footer { position: relative; z-index: 1; }
   .product-head,
   .product-why { display: none; }
   .product-foot { margin-top: 14px; gap: 10px; }
-  .product-foot .btn { --off: 3px; height: 40px; gap: 10px; padding: 0 12px 0 14px; font-size: 14px; }
+  .product-foot .btn { --off: 3px; height: auto; min-height: 40px; gap: 10px; padding: 8px 12px 8px 14px; font-size: 14px; line-height: 1.25; }
   .product-foot .btn i { height: 18px; padding-left: 10px; font-size: 14px; }
   .product-name img { width: 48px; }
   .product-name p { margin-top: 4px; font-size: 14px; }
   .product-steps { margin-top: 10px; }
-  .product-steps li { display: none; }
-  .product-steps li.on { display: grid; }
+  /* One step at a time, all stacked in one cell so the copy keeps the
+     height of the longest and the devices below never jump. */
+  .product-steps { display: grid; }
+  .product-steps li { grid-area: 1 / 1; visibility: hidden; }
+  .product-steps li.on { visibility: visible; }
+  /* Under the copy (main.js measures --text-end), sized to the room left. */
   .devices {
-    left: var(--gutter);
-    right: var(--gutter);
-    top: auto;
-    bottom: 9vh;
-    width: auto;
+    left: 50%;
+    right: auto;
+    top: calc(var(--text-end, 45vh) + 16px);
+    bottom: auto;
+    width: min(calc(100vw - var(--gutter) * 2), calc(100svh - var(--text-end, 45vh) - 16px - 7vh));
     aspect-ratio: 1 / 1;
-    transform: none;
+    transform: translateX(-50%);
   }
   .laptop { top: 14%; width: 92%; }
   .handset { width: 38%; bottom: 0; }
-  .toast { right: 12%; top: -14%; width: 76%; }
+  /* The notification keeps a readable width even when the devices are small. */
+  .toast {
+    --tw: min(300px, calc(100vw - var(--gutter) * 2));
+    right: auto;
+    left: 50%;
+    top: 0;
+    width: var(--tw);
+    margin-left: calc(var(--tw) / -2);
+  }
   .product-dots { right: auto; }
   .product-dots { left: 50%; transform: translateX(-50%); bottom: 2.5vh; }
 
@@ -1591,21 +1603,31 @@ main, .footer { position: relative; z-index: 1; }
   .scene-text .lede { margin-top: 16px; font-size: 15px; }
   .chips { margin-top: 18px; }
 
+  /* Under the text (main.js measures --text-end), sized to the room left. */
   .screens {
-    left: var(--gutter);
-    right: var(--gutter);
-    top: auto;
-    bottom: 6vh;
-    width: auto;
-    transform: none;
+    left: 50%;
+    right: auto;
+    top: calc(var(--text-end, 50vh) + 24px);
+    bottom: auto;
+    width: min(calc(100vw - var(--gutter) * 2), calc((100svh - var(--text-end, 50vh) - 48px) * 16 / 11));
+    transform: translateX(-50%);
   }
 
   .screen { width: 84%; }
 
-  .phones { left: 0; right: 0; width: auto; top: 50vh; }
-  .phone { width: 36vw; max-width: 200px; top: 42%; }
-  .phone.p1 { left: 8%; }
-  .phone.p2 { left: auto; right: 8%; }
+  /* The phones rise from the bottom edge under the text; only their tops
+     show on short screens, and they never climb into the words. */
+  .phones { left: 0; right: 0; width: auto; top: calc(var(--text-end, 50vh) + 36px); }
+  .phone { width: 40vw; max-width: 210px; top: 0; }
+  .phone.p1 {
+    left: 8%;
+    transform: translateY(calc((1 - var(--p, 0)) * 12vh)) rotate(calc((0.5 - var(--p, 0)) * -6deg));
+  }
+  .phone.p2 {
+    left: auto;
+    right: 8%;
+    transform: translateY(calc(4vh + var(--p, 0) * 10vh)) rotate(calc((var(--p, 0) - 0.5) * -6deg));
+  }
 
   .film { clip-path: inset(calc((1 - var(--e, 0)) * 30%) calc((1 - var(--e, 0)) * 14%) round calc((1 - var(--e, 0)) * 14px)); }
   .film-foot { flex-direction: column; align-items: start; }
@@ -1621,6 +1643,28 @@ main, .footer { position: relative; z-index: 1; }
 
   .project { grid-template-columns: 1fr; }
   .project-text { padding: 28px 24px 32px; }
+}
+
+/* Short phones (browser bars eat the height): a tighter headline, so the
+   logo still has room above it. */
+@media (max-width: 960px) and (max-height: 780px) {
+  .hero-copy { gap: 18px; bottom: 20px; }
+  .hero-copy .display { font-size: clamp(30px, 8.6vw, 44px); }
+  .hero-side { gap: 18px; }
+  .hero-side .lede { font-size: 14px; line-height: 1.5; }
+  .web .h2, .mobile .h2 { font-size: clamp(30px, 8.6vw, 44px); }
+  .web .scene-text .lede, .mobile .scene-text .lede { margin-top: 12px; font-size: 14px; line-height: 1.5; }
+  .mobile .chips { margin-top: 12px; gap: 6px; }
+  .mobile .chips li { padding: 5px 9px; font-size: 10px; }
+}
+@media (max-width: 960px) and (max-height: 640px) {
+  .hero-side .lede {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 560px) {

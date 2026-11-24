@@ -439,11 +439,26 @@ const PROJECTS = {
     const start = narrow
       ? { w: vw - gutter * 2, cx: vw / 2, cy: vh * 0.44 }
       : { w: Math.min(vw * 0.7, 1180), cx: vw / 2, cy: vh * 0.5 };
-    const end = narrow
-      ? { w: vw - gutter * 2, cx: vw / 2, cy: Math.max(130, vh * 0.25) }
-      : { w: Math.min(vw * 0.4, 640), cx: vw - gutter - Math.min(vw * 0.4, 640) / 2, cy: vh * 0.34 };
+    let end;
+    if (narrow) {
+      // Phones: the headline fills the bottom, so the logo settles in the
+      // room left between the top bar and the headline, never over it.
+      const bar = parseFloat(getComputedStyle(root).getPropertyValue("--bar")) || 76;
+      const top = bar + 8;
+      const room = Math.max(0, heroCopy.offsetTop - 16 - top);
+      const w = Math.max(120, Math.min(vw - gutter * 2, room / RATIO));
+      end = { w, cx: vw / 2, cy: top + Math.max(room, w * RATIO) / 2 };
+    } else {
+      end = { w: Math.min(vw * 0.4, 640), cx: vw - gutter - Math.min(vw * 0.4, 640) / 2, cy: vh * 0.34 };
+    }
     heroBox = { start, end };
     heroLogo.style.width = `${start.w}px`;
+
+    // Phones: the web screens and the app phones go under the text, so
+    // styles.css needs to know where the text ends.
+    $$(".web .scene-text, .mobile .scene-text, .product-copy").forEach((el) => {
+      el.parentElement.style.setProperty("--text-end", `${el.offsetTop + el.offsetHeight}px`);
+    });
 
     sizeSea();
   }
@@ -609,8 +624,10 @@ const PROJECTS = {
     heroLogo.style.transform = `translate3d(${(cx - w / 2).toFixed(1)}px, ${(cy - (w * RATIO) / 2).toFixed(1)}px, 0) scale(${((w / start.w) * breathe).toFixed(4)})`;
     glow.style.opacity = ((glowAmp + 0.22 * done + born * 0.35 * (1 - tear)) * (1 - m * 0.7)).toFixed(3);
 
-    if (p > 0.3) heroCopy.classList.add("in");
-    else if (p < 0.18) heroCopy.classList.remove("in");
+    // On phones the logo passes through the headline's space, so the words
+    // wait until it has nearly settled.
+    if (p > (narrow ? 0.6 : 0.3)) heroCopy.classList.add("in");
+    else if (p < (narrow ? 0.45 : 0.18)) heroCopy.classList.remove("in");
   }
 
   /* ---- Scenes */
@@ -919,6 +936,12 @@ const PROJECTS = {
   });
 
   measure();
+  // The headline changes height with the language and once the fonts load;
+  // the phone layout places the logo above it, so measure again then.
+  if ("ResizeObserver" in window) {
+    const ro = new ResizeObserver(() => measure());
+    [heroCopy, ...$$(".web .scene-text, .mobile .scene-text, .product-copy")].forEach((el) => ro.observe(el));
+  }
   if (location.hash) {
     const target = document.getElementById(location.hash.slice(1));
     if (target) window.scrollTo(0, anchorTop(target));
