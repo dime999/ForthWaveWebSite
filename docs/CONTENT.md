@@ -127,19 +127,7 @@ Closing: **Let's build something great.** ("great." highlighted) — "Have an id
 
 ## Team
 
-- Eyebrow: The people behind FourthWave
-- Headline: **Good ideas / start with / good people.** ("good people." highlighted)
-- Body: "Meet the people combining different perspectives, skills, and creative thinking to build meaningful digital experiences."
-- Detail line: "Four people. One creative vision."
-
-| Name | Photo | Role |
-|---|---|---|
-| Adem Halilović | `public/images/team/adem-halilovic.jpeg` | **[placeholder]** Role coming soon |
-| Kenan Čosić | `public/images/team/kenan-cosic.jpg` | **[placeholder]** Role coming soon |
-| Ammar Kahrimanović | `public/images/team/ammar-kahrimanovic.jpeg` | **[placeholder]** Role coming soon |
-| Sumeja Halilović | `public/images/team/sumeja-halilovic.jpeg` | **[placeholder]** Role coming soon |
-
-Profile text **[placeholder]**: "Full profile coming soon. Biography, experience, education and skills will be added here." Biographies, experience, education, skills and links were never supplied.
+Removed from the site, together with the staff photos.
 
 ## Contact
 
@@ -184,9 +172,8 @@ Everything under `public/` is unchanged:
 - `public/images/services/` — web-development, mobile-development, video-editing, digital-marketing (`.jpg`; mobile-development.jpg is the same photo as the hero)
 - `public/images/portfolio/web-development/` — project-01.png (PerfectCV), project-02.png and project-02-cropped.jpg (SHIFT)
 - `public/images/portfolio/mobile-development/` — project-01-screen-01/02.jpg, project-02-screen-01/02.jpg
-- `public/images/team/` — four portraits
 - `public/videos/portfolio/video-editing/featured-preview.gif` (480×270, 6.7 MB)
 
 ## Still missing
 
-Real descriptions, roles and links for PerfectCV and SHIFT; the name of the finance app; a second SHIFT screen; the showreel video and poster; client logos and permission to name clients; team roles and profiles; social media URLs; a public email address; email delivery setup.
+Real descriptions, roles and links for PerfectCV and SHIFT; the name of the finance app; a second SHIFT screen; the showreel video and poster; client logos and permission to name clients; social media URLs; a public email address; email delivery setup.

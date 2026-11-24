@@ -34,7 +34,6 @@ const TEXT = {
     "ad.skip": "Skip to the details",
     "nav.services": "Services",
     "nav.work": "Work",
-    "nav.team": "Team",
     "nav.contact": "Contact",
     "cta.talk": "Contact us",
 
@@ -85,8 +84,6 @@ const TEXT = {
     "prod.toast.short": "Short",
     "prod.more": "All the information about the Šanko app",
 
-    "team.title": ["Who you'll", "<em>work with.</em>"],
-    "team.lede": "There are four of us, and we have no account managers who just pass messages along. Whoever answers your email and has the first coffee with you is the one who sits down at the computer and works on your project.",
 
     "contact.title": ["Got an", "idea?", "<em>Let's talk.</em>"],
     "contact.lede": "Write briefly what you're working on. You don't need a finished plan, a rough idea is quite enough. We get back quickly with a few concrete questions or a suggestion for a short call.",
@@ -136,7 +133,6 @@ const TEXT = {
     "ad.skip": "Preskoči na detalje",
     "nav.services": "Usluge",
     "nav.work": "Radovi",
-    "nav.team": "Tim",
     "nav.contact": "Kontakt",
     "cta.talk": "Pišite nam",
 
@@ -187,8 +183,6 @@ const TEXT = {
     "prod.toast.short": "Manjak",
     "prod.more": "Sve informacije vezane za „Šanko“ aplikaciju",
 
-    "team.title": ["S kim ćete", "<em>raditi.</em>"],
-    "team.lede": "Nas je četvero i kod nas nema account managera koji samo prosljeđuju poruke. Ko vam odgovori na mail i s kim popijete prvu kafu, taj sjeda za računar i radi vaš projekat.",
 
     "contact.title": ["Imate", "ideju?", "<em>Hajde da</em>", "<em>pričamo.</em>"],
     "contact.lede": "Napišite ukratko na čemu radite. Ne morate imati spreman plan, i gruba ideja je sasvim dovoljna. Javljamo se brzo s par konkretnih pitanja ili prijedlogom za kratki poziv.",
@@ -400,7 +394,6 @@ const PROJECTS = {
   const seaZones = $$("[data-sea]");
   const filmVideo = $(".film video");
   const navLinks = $$(".bar-nav a");
-  const people = $$(".person[data-speed]");
 
   const layer = (name) => $(`[data-layer="${name}"]`);
   const L = {
@@ -767,7 +760,7 @@ const PROJECTS = {
 
     const mid = vh * 0.5;
     let section = "";
-    for (const id of ["services", "web", "mobile", "video", "sanko", "sanko-app", "team", "contact"]) {
+    for (const id of ["services", "web", "mobile", "video", "sanko", "sanko-app", "contact"]) {
       const r = document.getElementById(id).getBoundingClientRect();
       if (r.top <= mid && r.bottom > mid) section = id;
     }
@@ -775,15 +768,6 @@ const PROJECTS = {
     if (nav !== currentNav) {
       currentNav = nav;
       navLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === `#${nav}`));
-    }
-
-    if (!reduceMotion) {
-      for (const person of people) {
-        const r = person.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) continue;
-        const offset = (r.top + r.height / 2 - mid) * -Number(person.dataset.speed);
-        person.style.setProperty("--py", `${offset.toFixed(1)}px`);
-      }
     }
   }
 

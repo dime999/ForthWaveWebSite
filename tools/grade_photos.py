@@ -1,6 +1,6 @@
 """Crop and colour-grade the FourthWave photos into one deep-ocean tone.
 
-usage: py -I tools/grade_photos.py .   (needs Pillow; writes assets/sections and assets/team)
+usage: py -I tools/grade_photos.py .   (needs Pillow; writes assets/sections)
 """
 import os
 import sys
@@ -9,9 +9,7 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 ROOT = sys.argv[1]
 SRC = os.path.join(ROOT, "public", "images")
 OUT_S = os.path.join(ROOT, "assets", "sections")
-OUT_T = os.path.join(ROOT, "assets", "team")
 os.makedirs(OUT_S, exist_ok=True)
-os.makedirs(OUT_T, exist_ok=True)
 
 # Shadows -> deep water -> brand blue -> warm highlight.
 STOPS = [
@@ -106,23 +104,4 @@ for name, s in SECTIONS.items():
     graded = grade(im, keep=0.16)
     save(fit(graded, 16 / 9, *s["wide"]), f"{name}-wide.webp", 1920)
     save(fit(graded, 9 / 14, *s["tall"]), f"{name}-tall.webp", 900)
-    print(name, "ok")
-
-# Team: the matching studio portraits (same wall, same t-shirt) in
-# public/images/team/generated/, cut from one 2x2 grid. Same 3:4 crop and
-# tone for all four; a colour version for hover.
-TEAM = {
-    "adem-halilovic": dict(src="generated/adem-halilovic.jpg", box=(0, 0, 1, 1)),
-    "kenan-cosic": dict(src="generated/kenan-cosic.jpg", box=(0, 0, 1, 1)),
-    "ammar-kahrimanovic": dict(src="generated/ammar-kahrimanovic.jpg", box=(0, 0, 1, 1)),
-    "sumeja-halilovic": dict(src="generated/sumeja-halilovic.jpg", box=(0, 0, 1, 1)),
-}
-
-for name, s in TEAM.items():
-    im = Image.open(os.path.join(SRC, "team", s["src"])).convert("RGB")
-    im = crop_frac(im, *s["box"])
-    im = fit(im, 3 / 4, 0.5, 0.5)
-    im = im.resize((600, 800), Image.LANCZOS)
-    grade(im, keep=0.2, contrast=1.05).save(os.path.join(OUT_T, f"{name}.webp"), "WEBP", quality=82, method=6)
-    ImageEnhance.Color(im).enhance(0.9).save(os.path.join(OUT_T, f"{name}-color.webp"), "WEBP", quality=82, method=6)
     print(name, "ok")
