@@ -491,8 +491,8 @@ const TEXT = {
 
   let saved = null;
   try { saved = localStorage.getItem("fw-lang"); } catch {}
-  const guess = /^(bs|hr|sr|sh)\b/i.test(navigator.language || "") ? "bs" : "en";
-  setLang(saved || guess);
+  // Bosnian first; a visitor who picks EN keeps it on the next visit.
+  setLang(saved || "bs");
   $$(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
   $("#year").textContent = new Date().getFullYear();
 })();
