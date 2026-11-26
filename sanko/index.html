@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Martian+Mono:wght@400;500&family=Roboto+Slab:wght@700..900&family=Caveat:wght@600..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=27">
-  <link rel="stylesheet" href="sanko.css?v=4">
+  <link rel="stylesheet" href="../styles.css?v=28">
+  <link rel="stylesheet" href="sanko.css?v=5">
 </head>
 <body class="sanko-page">
   <!--
@@ -45,34 +45,34 @@
 
     <!-- The ad. The QR code on the business cards opens this page at
          #reklama: it plays at once and then glides on to the book below. -->
-    <section class="sp-ad" aria-label="Šanko">
-      <div class="ad" id="reklama" data-ad data-src="../assets/sanko/ad/sanko-ad-1080.mp4" data-src-sm="../assets/sanko/ad/sanko-ad-720.mp4" data-after="#sanko-book">
-        <div class="ad-frame">
-          <video playsinline preload="metadata" poster="../assets/sanko/ad/poster.webp?v=2" aria-label="Šanko"></video>
-          <div class="ad-cover">
-            <button class="btn ad-start" type="button"><span data-i18n="ad.play">Watch the ad</span><i aria-hidden="true">▶</i></button>
-            <p class="ad-len mono">0:33</p>
+    <section class="sp-spot" aria-label="Šanko">
+      <div class="spot" id="reklama" data-spot data-src="../assets/sanko/spot/sanko-spot-1080.mp4" data-src-sm="../assets/sanko/spot/sanko-spot-720.mp4" data-after="#sanko-book">
+        <div class="spot-frame">
+          <video playsinline preload="metadata" poster="../assets/sanko/spot/poster.webp?v=2" aria-label="Šanko"></video>
+          <div class="spot-cover">
+            <button class="btn spot-start" type="button"><span data-i18n="spot.play">Watch the ad</span><i aria-hidden="true">▶</i></button>
+            <p class="spot-len mono">0:33</p>
           </div>
-          <a class="ad-more" href="#sanko-book"><img src="../assets/sanko/icon.webp" alt="" width="192" height="192"><span data-i18n="ad.details"></span><i aria-hidden="true">↓</i></a>
-          <button class="ad-unmute" type="button"><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span data-i18n="ad.sound">Turn the sound on</span></button>
-          <div class="ad-ctrl">
-            <button class="ad-toggle" type="button"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
-            <input class="ad-seek" type="range" min="0" max="1000" value="0" step="1">
-            <span class="ad-time mono">0:00 / 0:33</span>
-            <button class="ad-sound" type="button"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.6 3 2.7-2.7-1.3-1.3-2.7 2.7-2.7-2.7-1.3 1.3 2.7 2.7-2.7 2.7 1.3 1.3 2.7-2.7 2.7 2.7 1.3-1.3z"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
-            <button class="ad-full" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg></button>
+          <a class="spot-more" href="#sanko-book"><img src="../assets/sanko/icon.webp" alt="" width="192" height="192"><span data-i18n="spot.details"></span><i aria-hidden="true">↓</i></a>
+          <button class="spot-unmute" type="button"><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span data-i18n="spot.sound">Turn the sound on</span></button>
+          <div class="spot-ctrl">
+            <button class="spot-toggle" type="button"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
+            <input class="spot-seek" type="range" min="0" max="1000" value="0" step="1">
+            <span class="spot-time mono">0:00 / 0:33</span>
+            <button class="spot-sound" type="button"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.6 3 2.7-2.7-1.3-1.3-2.7 2.7-2.7-2.7-1.3 1.3 2.7 2.7-2.7 2.7 1.3 1.3 2.7-2.7 2.7 2.7 1.3-1.3z"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+            <button class="spot-full" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg></button>
           </div>
-          <div class="ad-end">
+          <div class="spot-end">
             <img src="../assets/sanko/icon.webp" alt="" width="192" height="192">
-            <p class="ad-end-title" data-i18n="ad.end.title">That's Šanko.</p>
-            <p class="ad-end-text" data-i18n="ad.end.text"></p>
+            <p class="spot-end-title" data-i18n="spot.end.title">That's Šanko.</p>
+            <p class="spot-end-text" data-i18n="spot.end.text"></p>
             <div class="actions">
-              <a class="btn" href="#sanko-book"><span data-i18n="ad.details">See how it works</span><i aria-hidden="true">↓</i></a>
-              <button class="btn ghost ad-replay" type="button"><span data-i18n="ad.replay">Watch again</span><i aria-hidden="true">↻</i></button>
+              <a class="btn" href="#sanko-book"><span data-i18n="spot.details">See how it works</span><i aria-hidden="true">↓</i></a>
+              <button class="btn ghost spot-replay" type="button"><span data-i18n="spot.replay">Watch again</span><i aria-hidden="true">↻</i></button>
             </div>
           </div>
         </div>
-        <a class="ad-skip mono" href="#sanko-book"><span data-i18n="ad.skip">Skip to the details</span><i aria-hidden="true">↓</i></a>
+        <a class="spot-skip mono" href="#sanko-book"><span data-i18n="spot.skip">Skip to the details</span><i aria-hidden="true">↓</i></a>
       </div>
     </section>
 
@@ -379,7 +379,7 @@
     <button class="bk-lb-nav next" type="button" data-step="1" aria-label="›">›</button>
   </dialog>
 
-  <script src="sanko.js?v=6"></script>
-  <script src="../ad.js?v=3"></script>
+  <script src="sanko.js?v=7"></script>
+  <script src="../spot.js?v=3"></script>
 </body>
 </html>

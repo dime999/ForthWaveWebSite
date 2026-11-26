@@ -1,7 +1,7 @@
 /*
  * The Šanko ad player, shared by the home page and the Šanko page.
  *
- * Markup: a [data-ad] box with data-src (1080p) and data-src-sm (720p).
+ * Markup: a [data-spot] box with data-src (1080p) and data-src-sm (720p).
  * - Clicking the big button plays it with sound.
  * - Opening the page at the box's own #id (the QR code on the business
  *   cards points to sanko/#reklama) plays it at once, muted, because
@@ -18,25 +18,25 @@
   const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  document.querySelectorAll("[data-ad]").forEach(setup);
+  document.querySelectorAll("[data-spot]").forEach(setup);
 
   function setup(box) {
     const q = (s) => box.querySelector(s);
     const v = q("video");
-    const frame = q(".ad-frame");
-    const toggle = q(".ad-toggle");
-    const sound = q(".ad-sound");
-    const full = q(".ad-full");
-    const seek = q(".ad-seek");
-    const time = q(".ad-time");
+    const frame = q(".spot-frame");
+    const toggle = q(".spot-toggle");
+    const sound = q(".spot-sound");
+    const full = q(".spot-full");
+    const seek = q(".spot-seek");
+    const time = q(".spot-time");
     const after = box.dataset.after && document.querySelector(box.dataset.after);
 
     // On phones the long "all about Šanko" label would cover the picture, so a
     // copy of it sits under the player there (styles.css swaps the two).
-    const more = q(".ad-more");
+    const more = q(".spot-more");
     if (more) {
       const out = more.cloneNode(true);
-      out.className = "ad-more-out";
+      out.className = "spot-more-out";
       frame.after(out);
     }
 
@@ -64,12 +64,12 @@
       if (p) p.catch(() => { v.muted = true; v.play().catch(() => {}); sync(); });
     }
 
-    q(".ad-start").addEventListener("click", () => play(false));
+    q(".spot-start").addEventListener("click", () => play(false));
     toggle.addEventListener("click", () => (v.paused || v.ended ? play() : v.pause()));
     v.addEventListener("click", () => (v.paused ? play() : v.pause()));
-    q(".ad-unmute").addEventListener("click", () => { v.muted = false; if (v.paused) play(); sync(); });
+    q(".spot-unmute").addEventListener("click", () => { v.muted = false; if (v.paused) play(); sync(); });
     sound.addEventListener("click", () => { v.muted = !v.muted; sync(); });
-    q(".ad-replay").addEventListener("click", () => play(false));
+    q(".spot-replay").addEventListener("click", () => play(false));
 
     full.addEventListener("click", () => {
       if (document.fullscreenElement) document.exitFullscreen();

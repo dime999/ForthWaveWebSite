@@ -22,16 +22,16 @@ const CONTACT_EMAIL = "";
 // Arrays are headline lines (each rises separately).
 const TEXT = {
   en: {
-    "ad.kicker": "Šanko · the ad",
-    "ad.title": ["Šanko in", "<em>33 seconds.</em>"],
-    "ad.play": "Watch the ad",
-    "ad.sound": "Turn the sound on",
-    "ad.end.title": "That's Šanko.",
-    "ad.end.text": "A digital bar book for cafés and bars. See exactly how it works, step by step.",
-    "ad.more": "All the information about the Šanko app",
-    "ad.details": "See how it works",
-    "ad.replay": "Watch again",
-    "ad.skip": "Skip to the details",
+    "spot.kicker": "Šanko · the ad",
+    "spot.title": ["Šanko in", "<em>33 seconds.</em>"],
+    "spot.play": "Watch the ad",
+    "spot.sound": "Turn the sound on",
+    "spot.end.title": "That's Šanko.",
+    "spot.end.text": "A digital bar book for cafés and bars. See exactly how it works, step by step.",
+    "spot.more": "All the information about the Šanko app",
+    "spot.details": "See how it works",
+    "spot.replay": "Watch again",
+    "spot.skip": "Skip to the details",
     "nav.services": "Services",
     "nav.work": "Work",
     "nav.contact": "Contact",
@@ -121,16 +121,16 @@ const TEXT = {
   },
 
   bs: {
-    "ad.kicker": "Šanko · reklama",
-    "ad.title": ["Šanko za", "<em>33 sekunde.</em>"],
-    "ad.play": "Pogledaj reklamu",
-    "ad.sound": "Uključi zvuk",
-    "ad.end.title": "To je Šanko.",
-    "ad.end.text": "Digitalna šankerska knjiga za kafiće i barove. Pogledajte tačno kako radi, korak po korak.",
-    "ad.more": "Sve informacije vezane za „Šanko“ aplikaciju",
-    "ad.details": "Pogledaj kako radi",
-    "ad.replay": "Pogledaj ponovo",
-    "ad.skip": "Preskoči na detalje",
+    "spot.kicker": "Šanko · reklama",
+    "spot.title": ["Šanko za", "<em>33 sekunde.</em>"],
+    "spot.play": "Pogledaj reklamu",
+    "spot.sound": "Uključi zvuk",
+    "spot.end.title": "To je Šanko.",
+    "spot.end.text": "Digitalna šankerska knjiga za kafiće i barove. Pogledajte tačno kako radi, korak po korak.",
+    "spot.more": "Sve informacije vezane za „Šanko“ aplikaciju",
+    "spot.details": "Pogledaj kako radi",
+    "spot.replay": "Pogledaj ponovo",
+    "spot.skip": "Preskoči na detalje",
     "nav.services": "Usluge",
     "nav.work": "Radovi",
     "nav.contact": "Kontakt",
@@ -329,7 +329,7 @@ const PROJECTS = {
     const top = el.getBoundingClientRect().top + window.scrollY;
     if (el.id === "top") return 0;
     // The Šanko ad: the player in the middle of the screen.
-    const ad = el.querySelector(":scope > .ad");
+    const ad = el.querySelector(":scope > .spot");
     if (ad) {
       const r = ad.getBoundingClientRect();
       return r.top + window.scrollY - Math.max(0, (window.innerHeight - r.height) / 2) + 20;
